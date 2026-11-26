@@ -21,6 +21,7 @@ import {
   dwarfUnitsSchema,
   MAX_INSPECT_DWARF_UNITS_FILE_BYTES,
   type DwarfUnitsReport,
+  dwarfUnitsFileLimit,
   type InspectDwarfUnitsInput,
 } from "../../domain/native/dwarfUnits.js";
 import { err, ok } from "../../domain/result.js";
@@ -307,6 +308,7 @@ const dwarfUnitsFailure = (
           ),
           {
             retryable: false,
+            limit: dwarfUnitsFileLimit(input.max_file_bytes),
             remediationAction: inputBudgetRemediation(input),
           },
         ),
